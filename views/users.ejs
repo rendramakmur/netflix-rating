@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Casts List</title>
+</head>
+<body>
+    <%- include("partials/navbar") %>
+    <div class="text-center mt-4">
+        <h1>Users List</h1>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+        <div class="col-sm-9">
+            <table class="table">
+                <thead class="text-center">
+                  <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                <% data.forEach(el => { %>
+                    <tr>
+                      <td><p><%= el.first_name %></p></td>
+                      <td><p><%= el.last_name %></p></td>
+                      <td><p><%= el.username %></p></td>
+                      <td><p><%= el.email %></p></td>
+                      <td><p><%= el.age %></p></td>
+                      <td><a href="users/edit/<%= el.id %>" class="btn btn-primary">Edit</a> <a href="users/delete/<%= el.id %>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?')">Delete</a> <a href="users/rating/detail/<%= el.id %>" class="btn btn-primary">Rating History</a></td>
+                    </tr>
+                <% }) %>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+        <a href="/users/add" class="btn btn-dark">Add Cast</a>
+    </div>
+</body>
+</html>

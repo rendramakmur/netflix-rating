@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Movies List</title>
+</head>
+<body>
+    <%- include("partials/navbar") %>
+    <div class="text-center mt-4">
+        <h1>Movies List</h1>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+        <div class="col-sm-10">
+            <table class="table">
+                <thead class="text-center">
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Released Year</th>
+                    <th scope="col">Movie Type</th>
+                    <th scope="col">Production House</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                <% data.forEach(el => { %>
+                    <tr>
+                      <td><p><%= el.name %></p></td>
+                      <td><p><%= el.duration %></p></td>
+                      <td><p><%= el.released_year %></p></td>
+                      <td><p><%= el.movie_type %></p></td>
+                      <td><p><%= el.ProductionHouse.name %></p></td>
+                      <td>
+                        <a href="movies/edit/<%= el.id %>" class="btn btn-primary">Edit</a> 
+                        <a href="movies/delete/<%= el.id %>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?')">Delete</a> 
+                        <a href="movies/add/user/<%= el.id %>" class="btn btn-primary">Add Cast</a>
+                      </td>
+                    </tr>
+                <% }) %>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-4 mb-4">
+        <a href="/movies/add" class="btn btn-dark">Add Movies</a>
+    </div>
+</body>
+</html>
