@@ -23,6 +23,9 @@ module.exports = {
       movie_type: {
         type: Sequelize.STRING
       },
+      trailer_url: {
+        type: Sequelize.STRING
+      },
       ProductionHouseId: {
         type: Sequelize.INTEGER,
         references: {
