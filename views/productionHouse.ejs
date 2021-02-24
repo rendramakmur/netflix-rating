@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Production Houses List</title>
+</head>
+<body>
+    <%- include("partials/navbar") %>
+    <div class="text-center mt-4">
+        <h1>Production House List</h1>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+        <div class="col-sm-7">
+            <table class="table">
+                <thead class="text-center">
+                  <tr>
+                    <th scope="col">Names</th>
+                    <th scope="col">Country</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                <% data.forEach(el => { %>
+                    <tr>
+                      <td><p><%= el.name %></p></td>
+                      <td><p><%= el.country %></p></td>
+                    </tr>
+                <% }) %>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</body>
+</html>
