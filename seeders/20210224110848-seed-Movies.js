@@ -7,6 +7,7 @@ let movies = [
     duration: 50,
     released_year: 2013,
     movie_type: 'series',
+    trailer_url: 'https://www.youtube.com/embed/TFJwUwnShnA',
     ProductionHouseId: 1,
     createdAt: new Date(),
     updatedAt: new Date() 
@@ -17,6 +18,7 @@ let movies = [
     duration: 40,
     released_year: 2014,
     movie_type: 'series',
+    trailer_url: 'https://www.youtube.com/embed/MGRm4IzK1SQ',
     ProductionHouseId: 2,
     createdAt: new Date(),
     updatedAt: new Date() 
@@ -27,6 +29,7 @@ let movies = [
     duration: 65,
     released_year: 2013,
     movie_type: 'series',
+    trailer_url: 'https://www.youtube.com/embed/Lu3o0XrlsAg',
     ProductionHouseId: 3,
     createdAt: new Date(),
     updatedAt: new Date() 
@@ -37,6 +40,7 @@ let movies = [
     duration: 51,
     released_year: 2016,
     movie_type: 'series',
+    trailer_url: 'https://www.youtube.com/embed/b9EkMc79ZSU',
     ProductionHouseId: 4,
     createdAt: new Date(),
     updatedAt: new Date() 
@@ -48,6 +52,7 @@ let movies = [
     released_year: 2016,
     movie_type: 'series',
     ProductionHouseId: 4,
+    trailer_url: 'https://www.youtube.com/embed/b9EkMc79ZSU',
     createdAt: new Date(),
     updatedAt: new Date() 
   },
@@ -58,6 +63,7 @@ let movies = [
     released_year: 2018,
     movie_type: 'movie',
     ProductionHouseId: 5,
+    trailer_url: 'https://www.youtube.com/embed/BmXxfsZPeu0',
     createdAt: new Date(),
     updatedAt: new Date() 
   },
@@ -68,6 +74,7 @@ let movies = [
     released_year: 2015,
     movie_type: 'series',
     ProductionHouseId: 6,
+    trailer_url: 'https://www.youtube.com/embed/xl8zdCY-abw',
     createdAt: new Date(),
     updatedAt: new Date() 
   },
@@ -77,6 +84,7 @@ let movies = [
     duration: 125,
     released_year: 2001,
     movie_type: 'movie',
+    trailer_url: 'https://www.youtube.com/embed/xy6UmYImUPI',
     ProductionHouseId: 7,
     createdAt: new Date(),
     updatedAt: new Date() 

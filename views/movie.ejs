@@ -35,7 +35,7 @@
                       <td>
                         <a href="movies/edit/<%= el.id %>" class="btn btn-primary">Edit</a> 
                         <a href="movies/delete/<%= el.id %>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?')">Delete</a> 
-                        <a href="movies/add/user/<%= el.id %>" class="btn btn-primary">Add Cast</a>
+                        <a href="movies/add/user/<%= el.id %>" class="btn btn-primary">See Rating</a>
                       </td>
                     </tr>
                 <% }) %>
@@ -44,7 +44,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-center mt-4 mb-4">
-        <a href="/movies/add" class="btn btn-dark">Add Movies</a>
+        <a href="/movies/add" class="btn btn-dark">Add Movie</a>
     </div>
 </body>
 </html>

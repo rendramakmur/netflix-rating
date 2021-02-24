@@ -16,9 +16,14 @@
         <div class="col-sm-6">
             <h2 class="text-center">Movie Name</h2>
             <h3 class="text-center"><%= movie.name %></h3>
+            <iframe class="offset-sm-2" width="460" height="300"
+                src="<%=movie.trailer_url%>" frameborder="0" allowfullscreen>
+            </iframe>
+            <h5 class="text-center mt-3">Description</h5>
+            <p class="text-break mx-5"><%=movie.description%></p>
         </div>
         <div class="col-sm-6">
-            <h2 class="text-center">Add User</h2>
+            <h2 class="text-center">Make Review</h2>
             <form action="/movies/add/user/<%= movie.id  %>" method="POST">
                 <div class="d-flex justify-content-center">
                     <div class="col-sm-5">
@@ -29,9 +34,20 @@
                                     <option value="<%= user.id %>"><%= user.first_name %></option>
                                 <% }) %>
                             </select>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="rating" placeholder="Rating" name="rating">
-                                <label for="rating">Rating</label>
+                            <div class="mb-3">
+                                <select class="form-select" name="rating">
+                                    <option value="">Rating</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="comment" placeholder="Comment" name="comment">
@@ -55,7 +71,7 @@
     </div>
     <hr>
     <div class="d-flex justify-content-center">
-        <div class="col-sm-5">
+        <div class="col-sm-9">
             <table class="table">
                 <thead class="text-center">
                   <tr>
@@ -67,9 +83,9 @@
                 <tbody class="text-center">
                     <% movie.Users.forEach(user => { %>
                         <tr>
-                            <td><%= user.first_name %></td>
-                            <td><%= user.Rating.rating %></td>
-                            <td><%= user.Rating.comment %></td>
+                            <td><p class="text-center"><%= user.first_name %></p></td>
+                            <td><p class="text-center"><%= user.Rating.rating %></p></td>
+                            <td style="word-wrap: break-word;min-width: 100px;max-width: 100px;"><p class="text-center"><%= user.Rating.comment %></p></td>
                         </tr>
                     <% }) %>
                 </tbody>

@@ -41,6 +41,7 @@ class MovieController {
             duration: req.body.duration,
             released_year: req.body.released_year,
             movie_type: req.body.movie_type,
+            trailer_url: req.body.trailer_url,
             ProductionHouseId: req.body.ProductionHouseId
         }
 
@@ -79,11 +80,11 @@ class MovieController {
             include: ProductionHouse
         })
             .then(data => {
+                console.log(data);
                 pickedMovie = data;
                 return ProductionHouse.findAll()
             })
             .then(data => {
-                console.log(data);
                 res.render('editMovie', {dataMovies: pickedMovie, errors, prodH: data})
             })
             .catch(err => {
@@ -99,13 +100,15 @@ class MovieController {
             duration: req.body.duration,
             released_year: req.body.released_year,
             movie_type: req.body.movie_type,
+            trailer_url: req.body.trailer_url,
             ProductionHouseId: req.body.ProductionHouseId
         }
 
         Movie.update(updated, {
             where: {
                 "id": id
-            }
+            },
+            individualHooks: true
         })
         .then(data => {
             res.redirect('/movies')
@@ -136,7 +139,7 @@ class MovieController {
                 })
             })
             .then(data => {
-                res.render('addUserOnMovie', { movie: movie, users: data, errors })
+                res.render('addRatingOnMovie', { movie: movie, users: data, errors })
             })
             .catch(err => {
                 res.send(err);

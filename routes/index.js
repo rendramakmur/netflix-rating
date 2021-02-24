@@ -2,10 +2,11 @@ const router = require('express').Router();
 const productionHouses = require('./productionHousesRouter');
 const movies = require('./moviesRouter');
 const users = require('./usersRouter');
+const HomeController = require('../controllers/homeController');
 
-router.get('/', (req, res) => {
-    res.redirect('/production-houses');
-})
+router.get('/', HomeController.landingPage);
+router.get('/register', HomeController.register);
+
 router.use('/production-houses', productionHouses);
 router.use('/movies', movies);
 router.use('/users', users);

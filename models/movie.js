@@ -21,10 +21,19 @@ module.exports = (sequelize, DataTypes) => {
     duration: DataTypes.INTEGER,
     released_year: DataTypes.INTEGER,
     movie_type: DataTypes.INTEGER,
+    trailer_url: DataTypes.INTEGER,
     ProductionHouseId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Movie',
+    hooks: {
+      beforeCreate(instance, options) {
+        instance.trailer_url = instance.trailer_url.replace('watch?v=', 'embed/')
+      },
+      beforeUpdate(instance, options) {
+        instance.trailer_url = instance.trailer_url.replace('watch?v=', 'embed/')
+      }
+    }
   });
   return Movie;
 };
