@@ -1,0 +1,29 @@
+{
+  "name": "netflix-rating",
+  "version": "1.0.0",
+  "description": "Netflix Movies Rating App. Make a reference about movies/series on Netflix based on users rating. Using Node.js, Express, Sequelize, and PostgreSQL.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rendramakmur/netflix-rating.git"
+  },
+  "keywords": [],
+  "author": "netflix-rating-team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rendramakmur/netflix-rating/issues"
+  },
+  "homepage": "https://github.com/rendramakmur/netflix-rating#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "sequelize": "^6.5.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.2.0"
+  }
+}
