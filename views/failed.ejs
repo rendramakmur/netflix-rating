@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Netflix Rating</title>
+</head>
+<body>
+    <%- include("partials/navbar") %>
+    <div style="height: 600px; background-color: black;" class="d-flex justify-content-center">
+        <div class="align-self-center">
+            <h1 class="text-center text-danger"><%= errMessage %></h1>
+            <h6 class="text-center text-danger">redirect to login page in 3 seconds...</h6>
+            <h6 class="text-center text-danger"><a type="button" class="btn btn-outline-danger" href="/login">Click to Login Page</a></h6>
+        </div>
+    </div>
+    <script>
+        setTimeout(function () {
+           window.location = "/login";
+        }, 3000)
+      </script>
+</body>
+</html>

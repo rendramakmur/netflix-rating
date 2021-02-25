@@ -15,7 +15,7 @@ class UserController {
         res.render('addUser');
     }
 
-    static postAddUser(req, res) {
+    static postRegister(req, res) {
         let newUser = {
             first_name: req.body.first_name,
             last_name: req.body.last_name,
@@ -26,18 +26,26 @@ class UserController {
 
         User.create(newUser)
             .then(data => {
-                res.redirect('/users');
+                res.redirect('/');
             })
             .catch(err => {
-                res.send(err);
+                let errors = []
+                err.errors.forEach(error => {
+                    errors.push(error.message);
+                })
+                res.redirect(`/register?errors=${errors}`)
             })
     }
 
     static getEditUser(req, res) {
         let id = req.params.id;
+        let errors = req.query.errors;
+        if (errors) {
+            errors = errors.split(',');
+        }
         User.findByPk(id)
             .then(data => {
-                res.render('editUser', { data: data })
+                res.render('editUser', { data, errors})
             })
             .catch(err => {
                 res.send(err);
@@ -64,7 +72,11 @@ class UserController {
             res.redirect('/Users')
         })
         .catch(err => {
-            res.send(err);
+            let errors = [];
+                err.errors.forEach(error => {
+                    errors.push(error.message);
+                })
+                res.redirect(`/users/edit/${id}?errors=${errors}`);
         })
     }
 

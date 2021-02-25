@@ -6,7 +6,11 @@ class HomeController {
     }
 
     static register(req, res) {
-        res.render('register')
+        let errors = req.query.errors;
+        if (errors) {
+            errors = errors.split(',');
+        }
+        res.render('register', {errors})
     }
 
     static getLogin(req, res) {
@@ -16,24 +20,31 @@ class HomeController {
     static postLogin(req, res,next) {
         User.findOne({
             where : {
-                username : req.body.username,
-                password : req.body.password
+                username : req.body.username
             }
         })
-        .then((data)=>{
-            req.session.username = data.username
-            req.session.password = data.password
-            res.redirect('/movies')
+        .then((data)=> {
+            
+            let comparedPassword = (data.password == req.body.password); // Kalau udah pakai hash nanti ceknya disini pake comparePassword(req.body.password, data.password)
+            console.log(comparedPassword, data.password, req.body.password);
+            
+            if (data && comparedPassword) {
+                req.session.username = data.username
+                req.session.password = data.password
+                res.redirect('/')
+            } else {
+                res.redirect('/failed?errors=Invalid username/password');
+            }
         })
         .catch((err)=>{
             res.send(err)
-            console.log(err);
         })
         
-        
-        
+    }
 
-        // Belum dihashing dan belum validate username & passwordnya, setelah login redirect ke home '/'
+    static getFailedPage (req, res) {
+        let errMessage = req.query.errors
+        res.render('failed', {errMessage});
     }
 }
 
