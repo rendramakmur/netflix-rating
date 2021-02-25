@@ -14,6 +14,27 @@ module.exports = (sequelize, DataTypes) => {
       Movie.belongsTo(models.ProductionHouse, { foreignKey: "ProductionHouseId" })
       Movie.belongsToMany(models.User, { through: models.Rating })
     }
+
+    getDuration() {
+      let hours = Math.floor(this.duration/60);
+      let minutes = this.duration % 60;
+      if (hours) {
+        return `${hours}h ${minutes}m`
+      } else {
+        return `${this.duration}m`
+      }
+    }
+
+    static getMovieAge() {
+      let movieAge = new Date().getFullYear() - this.released_year
+      if (movieAge > 1) {
+        return `${movieAge} years ago`;
+      } else if (movieAge == 1) {
+        return `${movieAge} year ago`;
+      } else if (movieAge == 0) {
+        return `This year`;
+      }
+    }
   };
   Movie.init({
     name: DataTypes.STRING,

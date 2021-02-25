@@ -12,6 +12,7 @@ router.post('/register', UserController.postRegister);
 router.get('/login', HomeController.getLogin);
 router.post('/login', HomeController.postLogin);
 router.get('/failed', HomeController.getFailedPage);
+router.get('/logout', HomeController.logout);
 
 router.use(mid)
 

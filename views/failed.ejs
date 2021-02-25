@@ -7,7 +7,7 @@
     <title>Netflix Rating</title>
 </head>
 <body>
-    <%- include("partials/navbar") %>
+    <%- include("partials/navbar", {userStatus: userStatus}) %>
     <div style="height: 600px; background-color: black;" class="d-flex justify-content-center">
         <div class="align-self-center">
             <h1 class="text-center text-danger"><%= errMessage %></h1>

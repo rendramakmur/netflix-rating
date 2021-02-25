@@ -1,4 +1,5 @@
 const { Movie, ProductionHouse } = require('../models');
+const userStatus = require('../middlewares/userStatus');
 
 class ProdHouseController {
     static showList(req, res) {
@@ -8,7 +9,7 @@ class ProdHouseController {
             ]
         })
             .then(data => {
-                res.render('productionHouse', {data: data});
+                res.render('productionHouse', {data: data, userStatus: userStatus(req)});
             })
             .catch(err => {
                 res.send(err);
@@ -55,7 +56,7 @@ class ProdHouseController {
 
         ProductionHouse.findByPk(id)
             .then(data => {
-                res.render('editProdHouse', {data})
+                res.render('editProdHouse', {data, userStatus: userStatus(req)})
             })
             .catch(data => {
                 res.send(err);

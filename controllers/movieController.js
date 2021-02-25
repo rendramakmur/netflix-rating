@@ -1,4 +1,6 @@
 const { Movie, ProductionHouse, User, Rating } = require('../models');
+const userStatus = require('../middlewares/userStatus');
+const changeTime = require('../helpers/changeTime');
 
 class MovieController {
     static showList (req, res) {
@@ -7,7 +9,7 @@ class MovieController {
             order: [['released_year', 'DESC']]
         })
             .then(data => {
-                res.render('movie', { data: data })
+                res.render('movie', { data: data, userStatus: userStatus(req)})
             })
             .catch(err => {
                 res.send(err);
@@ -27,10 +29,10 @@ class MovieController {
             })
             .then(data => {
                 movies = data
-                res.render('addMovie', {errors, prodH: prodHouseData});
+                res.render('addMovie', {errors, prodH: prodHouseData, userStatus: userStatus(req)});
             })
             .catch(err => {
-                res.render('addMovie', {errors, prodH: prodHouseData});
+                res.render('addMovie', {errors, prodH: prodHouseData, userStatus: userStatus(req)});
             })
     }
 
@@ -85,7 +87,7 @@ class MovieController {
                 return ProductionHouse.findAll()
             })
             .then(data => {
-                res.render('editMovie', {dataMovies: pickedMovie, errors, prodH: data})
+                res.render('editMovie', {dataMovies: pickedMovie, errors, prodH: data, userStatus: userStatus(req)})
             })
             .catch(err => {
                 res.send(err);
@@ -142,16 +144,17 @@ class MovieController {
             .then(data => {
                 users = data;
                 return Rating.findAll({
-                    where: { MovieId:id }
+                    where: { MovieId:id },
                 })
             })
             .then(data => {
+                let userId = +req.session.userId
+                let username = req.session.username
                 let avgRating;
                 let countedRating;
                 if (data.length === 0) {
-                    res.render('addRatingOnMovie', { movie: movie, users: users, errors, avgRating, countedRating })
+                    res.render('addRatingOnMovie', { movie: movie, users: users, errors, avgRating, countedRating, userId, username, userStatus: userStatus(req), changeTime})
                 } else {
-                    console.log('Ada data');
                     let ratings = []
     
                     data.forEach(movie => {
@@ -181,7 +184,7 @@ class MovieController {
     
                     countedRating = Object.values(countedRatingsObj);
     
-                    res.render('addRatingOnMovie', { movie: movie, users: users, errors, avgRating, countedRating})
+                    res.render('addRatingOnMovie', { movie: movie, users: users, errors, avgRating, countedRating, userId, username, userStatus: userStatus(req), changeTime})
                 }
             })
             .catch(err => {
