@@ -22,15 +22,25 @@
             </ul>
           </div>
         </div>
-        <div class="container-fluid">
-          <ul class="navbar-nav ms-auto me-3">
-              <li class="nav-item">
-                  <a class="nav-link" href="/login">Login</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/register">Register</a>
-              </li>
-          </ul>
-      </div>
+        <% if (!userStatus) { %>
+          <div class="container-fluid">
+            <ul class="navbar-nav ms-auto me-3">
+                <li>
+                    <a class="btn btn-outline-danger me-3" href="/login">Login</a>
+                </li>
+                <li>
+                    <a class="btn btn-outline-danger me-3" href="/register">Register</a>
+                </li>
+            </ul>
+        </div>
+        <% } else { %>
+          <div class="container-fluid">
+            <ul class="navbar-nav ms-auto me-3">
+                <li class="nav-item">
+                    <a class="btn btn-outline-danger" type="button" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <% } %>
       </nav>
 </header>

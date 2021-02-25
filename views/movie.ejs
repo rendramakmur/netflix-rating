@@ -7,7 +7,7 @@
     <title>Movies List</title>
 </head>
 <body>
-    <%- include("partials/navbar") %>
+    <%- include("partials/navbar", {userStatus: userStatus}) %>
     <div class="text-center mt-4">
         <h1>Movies List</h1>
     </div>
@@ -28,7 +28,7 @@
                 <% data.forEach(el => { %>
                     <tr>
                       <td><p><%= el.name %></p></td>
-                      <td><p><%= el.duration %></p></td>
+                      <td><p><%= el.getDuration() %></p></td>
                       <td><p><%= el.released_year %></p></td>
                       <td><p><%= el.movie_type %></p></td>
                       <td><p><%= el.ProductionHouse.name %></p></td>

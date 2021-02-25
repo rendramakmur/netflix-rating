@@ -8,7 +8,7 @@
     <title><%= movie.name %></title>
 </head>
 <body>
-    <%- include("partials/navbar") %>
+    <%- include("partials/navbar", {userStatus: userStatus}) %>
     <div class="text-center mt-4">
         <h1><%= movie.name %></h1>
     </div>
@@ -24,7 +24,7 @@
                 src="<%=movie.trailer_url%>" frameborder="0" allowfullscreen>
             </iframe>
             <h5 class="text-center mt-3">Description</h5>
-            <p class="text-break mx-5"><%=movie.description%></p>
+            <p class="text-break text-center mx-5"><%=movie.description%></p>
         </div>
         <div class="col-sm-6">
             <h2 class="text-center">Make Review</h2>
@@ -84,6 +84,7 @@
                     <th scope="col">User</th>
                     <th scope="col">Rating</th>
                     <th scope="col">Comment</th>
+                    <th scope="col">Posted</th>
                   </tr>
                 </thead>
                 <tbody class="text-center">
@@ -92,6 +93,7 @@
                             <td><p class="text-center"><%= user.first_name %></p></td>
                             <td><p class="text-center"><%= user.Rating.rating %></p></td>
                             <td style="word-wrap: break-word;min-width: 100px;max-width: 100px;"><p class="text-center"><%= user.Rating.comment %></p></td>
+                            <td><p class="text-center"><%= changeTime(user.Rating.createdAt) %></p></td>
                         </tr>
                     <% }) %>
                 </tbody>

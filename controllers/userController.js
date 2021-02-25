@@ -1,10 +1,11 @@
 const { User, Movie } = require('../models')
+const userStatus = require('../middlewares/userStatus');
 
 class UserController {
     static showList(req, res) {
         User.findAll()
             .then(data => {
-                res.render('users', {data})
+                res.render('users', {data, userStatus: userStatus(req)})
             })
             .catch(err => {
                 res.send(err);
@@ -45,7 +46,7 @@ class UserController {
         }
         User.findByPk(id)
             .then(data => {
-                res.render('editUser', { data, errors})
+                res.render('editUser', { data, errors, userStatus: userStatus(req) })
             })
             .catch(err => {
                 res.send(err);
@@ -98,7 +99,7 @@ class UserController {
             include: Movie
         })
             .then(data => {
-                res.render('userDetails', {data});
+                res.render('userDetails', {data, userStatus: userStatus(req)});
             })
             .catch(err => {
                 res.send(err);
