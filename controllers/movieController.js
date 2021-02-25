@@ -129,6 +129,7 @@ class MovieController {
         }
         let id = req.params.id;
         let movie;
+        let users;
         Movie.findByPk(id, {
             include: User
         })
@@ -139,7 +140,49 @@ class MovieController {
                 })
             })
             .then(data => {
-                res.render('addRatingOnMovie', { movie: movie, users: data, errors })
+                users = data;
+                return Rating.findAll({
+                    where: { MovieId:id }
+                })
+            })
+            .then(data => {
+                let avgRating;
+                let countedRating;
+                if (data.length === 0) {
+                    res.render('addRatingOnMovie', { movie: movie, users: users, errors, avgRating, countedRating })
+                } else {
+                    console.log('Ada data');
+                    let ratings = []
+    
+                    data.forEach(movie => {
+                        ratings.push(movie.rating)
+                    })
+    
+                    avgRating = ratings.reduce((num, nextNum) => {
+                        return num + nextNum;
+                    }) / ratings.length;
+    
+                    let countedRatingsObj = {
+                        "1": 0,
+                        "2": 0,
+                        "3": 0,
+                        "4": 0,
+                        "5": 0,
+                        "6": 0,
+                        "7": 0,
+                        "8": 0,
+                        "9": 0,
+                        "10": 0
+                    }
+    
+                    for (let i = 0; i < ratings.length; i++) {
+                        countedRatingsObj[ratings[i]]++
+                    }
+    
+                    countedRating = Object.values(countedRatingsObj);
+    
+                    res.render('addRatingOnMovie', { movie: movie, users: users, errors, avgRating, countedRating})
+                }
             })
             .catch(err => {
                 res.send(err);
