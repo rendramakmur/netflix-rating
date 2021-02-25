@@ -4,7 +4,8 @@
   "description": "Netflix Movies Rating App. Make a reference about movies/series on Netflix based on users rating. Using Node.js, Express, Sequelize, and PostgreSQL.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
