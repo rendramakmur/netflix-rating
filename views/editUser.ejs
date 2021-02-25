@@ -37,6 +37,13 @@
                 <div class="d-flex justify-content-center mt-3">
                     <button type="submit" class="btn btn-dark">Submit</button>
                 </div>
+                <div class="text-center mt-3">
+                    <% if (errors) { %>
+                        <% errors.forEach(error => { %>
+                            <p><%= error %></p>
+                        <% }) %>
+                    <% } %>
+                </div>
             </form>
         </div>
     </div>

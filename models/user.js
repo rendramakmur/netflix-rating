@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
        type : DataTypes.STRING,
        validate : {
         notEmpty: {
-          msg : 'firstname tidak boleh kosong'
+          msg : 'Firstname tidak boleh kosong'
         }
        }
       },
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.STRING,
       validate : {
        notEmpty: {
-         msg : 'lastname tidak boleh kosong'
+         msg : 'Lastname tidak boleh kosong'
        }
       }
      },
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.STRING,
       validate : {
        notEmpty: {
-         msg : 'username tidak boleh kosong'
+         msg : 'Username tidak boleh kosong'
        }
       }
      },
@@ -43,11 +43,11 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.STRING,
       validate : {
        notEmpty: {
-         msg : 'password tidak boleh kosong'
+         msg : 'Password tidak boleh kosong'
        },
        len : {
-         args : [10,20],
-         msg : 'password minimal 10 karakter dan maksimal 20 karakter'
+         args : [5,15],
+         msg : 'Password minimal 5 karakter dan maksimal 15 karakter'
        }
       }
      },
@@ -55,10 +55,10 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.STRING,
       validate : {
        notEmpty: {
-         msg : 'email tidak boleh kosong'
+         msg : 'Email tidak boleh kosong'
        },
        isEmail : {
-         msg : 'harus didalam format email'
+         msg : 'Harus didalam format email'
        }
       }
      },
@@ -66,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.INTEGER,
       validate : {
        notEmpty: {
-         msg : 'AGE tidak boleh kosong'
+         msg : 'Age tidak boleh kosong'
        }
       }
      }
