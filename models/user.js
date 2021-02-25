@@ -15,12 +15,61 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    email: DataTypes.STRING,
-    age: DataTypes.INTEGER
+      first_name: {
+       type : DataTypes.STRING,
+       validate : {
+        notEmpty: {
+          msg : 'firstname tidak boleh kosong'
+        }
+       }
+      },
+    last_name: {
+      type : DataTypes.STRING,
+      validate : {
+       notEmpty: {
+         msg : 'lastname tidak boleh kosong'
+       }
+      }
+     },
+    username: {
+      type : DataTypes.STRING,
+      validate : {
+       notEmpty: {
+         msg : 'username tidak boleh kosong'
+       }
+      }
+     },
+    password: {
+      type : DataTypes.STRING,
+      validate : {
+       notEmpty: {
+         msg : 'password tidak boleh kosong'
+       },
+       len : {
+         args : [10,20],
+         msg : 'password minimal 10 karakter dan maksimal 20 karakter'
+       }
+      }
+     },
+    email: {
+      type : DataTypes.STRING,
+      validate : {
+       notEmpty: {
+         msg : 'email tidak boleh kosong'
+       },
+       isEmail : {
+         msg : 'harus didalam format email'
+       }
+      }
+     },
+    age: {
+      type : DataTypes.INTEGER,
+      validate : {
+       notEmpty: {
+         msg : 'AGE tidak boleh kosong'
+       }
+      }
+     }
   }, {
     sequelize,
     modelName: 'User',
@@ -37,7 +86,7 @@ module.exports = (sequelize, DataTypes) => {
         instance.username = generateUsername;
       },
       beforeUpdate(instance, options) {
-        let generateUsername = '';
+        let generateUsername = '';  
         for (let i = 0; i < instance.email.length; i++) {
             if (instance.email[i] === '@') {
               break;
