@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <title>Movie Detail & Add User</title>
+    <title><%= movie.name %></title>
 </head>
 <body>
     <%- include("partials/navbar") %>
     <div class="text-center mt-4">
-        <h1>Movies Detail & Add User</h1>
+        <h1><%= movie.name %></h1>
     </div>
     <hr>
+    <div>
+        <h6 class="text-center">AVERAGE RATING</h6>
+        <h1 class="text-center"><%= avgRating ? avgRating.toFixed(1) : '0' %></h1>
+    </div>
     <div class="row mt-3">
         <div class="col-sm-6">
-            <h2 class="text-center">Movie Name</h2>
-            <h3 class="text-center"><%= movie.name %></h3>
+            <h2 class="text-center">Trailer</h2>
             <iframe class="offset-sm-2" width="460" height="300"
                 src="<%=movie.trailer_url%>" frameborder="0" allowfullscreen>
             </iframe>
@@ -60,13 +64,18 @@
                                 <% if (errors) { %>
                                   <% errors.forEach(error => { %>
                                     <p><%= error %></p>
-                                  <% }) %>  
+                                  <% }) %>
                                <% } %>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
+            <div class="d-flex justify-content-center">
+                <div style="width: 600px;">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
         </div>
     </div>
     <hr>
@@ -92,5 +101,30 @@
               </table>
         </div>
     </div>
+    <script>
+    let myChart = document.getElementById('myChart').getContext('2d')
+    
+    Chart.defaults.global.defaultFontColor = '#212529'
+    Chart.defaults.global.defaultFontFamily = 'system-ui'
+
+    let ratingChart = new Chart(myChart, {
+        type: 'bar',
+        data: {
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+            datasets:[{
+                label: 'User',
+                data: <%- countedRating ? JSON.stringify(countedRating) : [] %>,
+                backgroundColor: '#E50914'
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Rating Count',
+                fontSize: 32
+            }
+        }
+    })
+    </script>
 </body>
 </html>
