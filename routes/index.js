@@ -7,6 +7,9 @@ const HomeController = require('../controllers/homeController');
 router.get('/', HomeController.landingPage);
 router.get('/register', HomeController.register);
 
+router.get('/login', HomeController.getLogin);
+router.post('/login', HomeController.postLogin);
+
 router.use('/production-houses', productionHouses);
 router.use('/movies', movies);
 router.use('/users', users);
