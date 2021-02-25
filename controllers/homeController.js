@@ -1,3 +1,4 @@
+const { comparePassword } = require('../helpers/bcrypt');
 const {User} = require('../models')
 
 class HomeController {
@@ -24,14 +25,17 @@ class HomeController {
             }
         })
         .then((data)=> {
-            
-            let comparedPassword = (data.password == req.body.password); // Kalau udah pakai hash nanti ceknya disini pake comparePassword(req.body.password, data.password)
-            console.log(comparedPassword, data.password, req.body.password);
-            
-            if (data && comparedPassword) {
-                req.session.username = data.username
-                req.session.password = data.password
-                res.redirect('/')
+            if (data) {
+                let comparedPassword = comparePassword(req.body.password, data.password)
+                console.log(comparedPassword, data.password, req.body.password);
+    
+                if (comparedPassword) {
+                    req.session.userId = data.id
+                    req.session.username = data.username
+                    res.redirect('/')
+                } else {
+                    res.redirect('/failed?errors=Invalid username/password');
+                }
             } else {
                 res.redirect('/failed?errors=Invalid username/password');
             }

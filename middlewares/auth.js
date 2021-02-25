@@ -1,6 +1,6 @@
 let mid =  (req,res,next) => {
     console.log(req.session);
-    if(req.session.username && req.session.password){
+    if(req.session.username && req.session.id){
         next()
     } else {
         res.redirect('/failed?errors=Please, login to see this content.') // ini ke failed

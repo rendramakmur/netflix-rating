@@ -32,11 +32,8 @@
                 <div class="d-flex justify-content-center">
                     <div class="col-sm-5">
                         <div>
-                            <select class="form-select mb-3" name="UserId">
-                                <option value="">---Select User---</option>
-                                <% users.forEach(user => { %>
-                                    <option value="<%= user.id %>"><%= user.first_name %></option>
-                                <% }) %>
+                            <select class="form-select mb-3" name="UserId" aria-label="Disabled select example">
+                                <option value="<%= userId %>" selected><%= username %></option>
                             </select>
                             <div class="mb-3">
                                 <select class="form-select" name="rating">

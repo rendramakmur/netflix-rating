@@ -146,12 +146,13 @@ class MovieController {
                 })
             })
             .then(data => {
+                let userId = +req.session.userId
+                let username = req.session.username
                 let avgRating;
                 let countedRating;
                 if (data.length === 0) {
-                    res.render('addRatingOnMovie', { movie: movie, users: users, errors, avgRating, countedRating })
+                    res.render('addRatingOnMovie', { movie: movie, users: users, errors, avgRating, countedRating, userId, username })
                 } else {
-                    console.log('Ada data');
                     let ratings = []
     
                     data.forEach(movie => {
@@ -181,7 +182,7 @@ class MovieController {
     
                     countedRating = Object.values(countedRatingsObj);
     
-                    res.render('addRatingOnMovie', { movie: movie, users: users, errors, avgRating, countedRating})
+                    res.render('addRatingOnMovie', { movie: movie, users: users, errors, avgRating, countedRating, userId, username})
                 }
             })
             .catch(err => {
