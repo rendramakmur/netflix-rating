@@ -24,13 +24,12 @@ class HomeController {
             }
         })
         .then((data)=> {
-            
-            let comparedPassword = (data.password == req.body.password); // Kalau udah pakai hash nanti ceknya disini pake comparePassword(req.body.password, data.password)
+            let comparedPassword = bcrypt.compareSync(data.password == req.body.password); // Kalau udah pakai hash nanti ceknya disini pake comparePassword(req.body.password, data.password)
             console.log(comparedPassword, data.password, req.body.password);
             
             if (data && comparedPassword) {
                 req.session.username = data.username
-                req.session.password = data.password
+                req.session.password =  data.password
                 res.redirect('/')
             } else {
                 res.redirect('/failed?errors=Invalid username/password');
